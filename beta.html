@@ -1,0 +1,1157 @@
+
+<html>
+    <head>
+        <style type='text/css'>
+            .holds-the-iframe {
+                background:url(https://media.giphy.com/media/LyuWqvhAU93XO/giphy.gif) center center no-repeat;
+            }
+            .meongloading {
+                position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: transparent;
+                background:url(https://media.giphy.com/media/LyuWqvhAU93XO/giphy.gif) center center no-repeat;
+            }
+            .meongloading:before{
+                position: absolute;
+                width: 30px;
+                top: 100;
+                left: 50%;
+                margin-left: -50px;
+                content: 'Loading Om ...';
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+        <title>Binary Tool V 1.6.1</title>
+        <script>var Version = "1.6.1";</script>
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/id.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js" type="text/javascript"></script>
+        <script src="lib/util.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    </head><body class='meongloading'>
+    <div class="container" style="margin-top: 20px; display: none;">
+        <div class="row">
+            <div class="col-md-3" id="STATICKOLOM">
+                <form id="login_token">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+        </span>
+        <select data-toggle="tooltip" title="Pilih Volatility" name="TXTSymbol" id="TXTSymbol" class="form-control" data-live-search="true">
+            <optgroup label="Volatility">
+                <option value="R_100">Volatility 100</option>
+                <option value="R_10">Volatility 10</option>
+                <option value="R_25">Volatility 25</option>
+                <option value="R_50">Volatility 50</option>
+                <option value="R_75">Volatility 75</option>
+                <option value="RDBEAR">Random Bear</option>
+                <option value="RDBULL">Random Bull</option>
+            </optgroup>
+            <optgroup label="Forex">
+                <option value="frxEURUSD">EUR/USD</option>
+                <option value="frxUSDJPY">USD/JPY</option>
+                <option value="frxGBPUSD">GBP/USD</option>
+                <option value="frxUSDCHF">USD/CHF</option>
+                <option value="frxEURJPY">EUR/JPY</option>
+                <option value="frxUSDCAD">USD/CAD</option>
+                <option value="frxAUDUSD">AUD/USD</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+        </span>
+        <input data-toggle="tooltip" title="Token API anda" 
+               type="password" id="TXTToken" class="form-control" placeholder="Token" aria-describedby="basic-addon1">
+        <span class="input-group-btn">
+            <button class="btn btn-default" id="BTNLogin" type="button">Go!</button>
+        </span>
+    </div>
+</form>
+<p id="OutputID"></p>
+<p id="OutputSaldo"></p>
+<!-- <p id="OutputEmail"></p>
+<p id="OutputIsVirtual"></p>
+<p id="OutputCountry"></p>
+<p id="OutputFullName"></p> -->                <div class="hidein" style="display: none;">
+                    <form id="copytrade">
+    <div class="input-group" id="DIVDurationOrExpiry">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+        </span>
+        <select name="TXTTypeTimeset" id="TXTTypeTimeset" class="form-control">
+            <option value="TimeSetDuration">Dengan Duration</option>
+            <option value="TimeSetExpiry">Dengan Expiry Time Set</option>
+        </select>
+    </div>
+    <div class="input-group" id="TimeSetDuration">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+        </span>
+        <select name="TXTDuration" id="TXTDuration" class="form-control">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <select name="TXTDuration_unit" id="TXTDuration_unit" class="form-control">
+            <option value="t">Tick</option>
+            <option value="s">Detik -- Forex tidak bisa</option>
+            <option value="m">Menit</option>
+            <option value="h">Jam</option>
+            <!-- <option value="d">Hari</option> -->
+        </select>
+    </div>
+    <div class="input-group" id="TimeSetExpiry" style="display: none;">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+        </span>
+        <input name="TXTDurationDate" id="TXTDurationDate" class="form-control" />
+    </div>
+</form>                    <div id="OutputTicks" style="color: white; padding: 10px; margin: 10px 0;"></div>                    <form id="form_tombol">
+    <select data-toggle="tooltip" 
+            title="Pilih Action" 
+            name="SLTActionBet" 
+            id="SLTActionBet" class="form-control">
+        <option value="BTNTombolCALLPUT">CALL/PUT</option>
+        <option value="BTNTombolSetPrices">Lock Prices</option>
+        <option value="DIVCTHLBarierTarget">Hi/Lo Target</option>
+        <option value="DIVCTHLBarierSideway">Hi/Lo Sideway</option>
+        <option value="DIVCTHLHedging">Hi/Lo Hedging</option>
+        <option value="DIVCTTouchesBerier">Touches</option>
+        <option value="DIVCTDNTBarier">Does Not Touch (DNT)</option>
+        <option value="DIVCTIOEB">IO Ends Between</option>
+        <option value="DIVCTIOEO">IO Ends Outside</option>
+        <option value="DIVCTIOSB">IO Stays Between</option>
+        <option value="DIVCTIOGO">IO Goes Outside</option>
+    </select>
+    <div id="BTNTombolSetPrices" style="display: none;">
+        <p>Setelah Eksekusi, SetPrices <a class="btn btn-danger" id="BTNTombolSetPricesReset">reset</a></p>
+        <div class="input-group" 
+             data-toggle="tooltip" 
+             title="Aktif, Set ulang Prices setelah selesai kontrak.">
+            <span class="input-group-addon">
+                <input type="checkbox" id="CHKOnOfSetUlangPrices">
+            </span>
+            <input type="text" class="form-control" Placeholder="Set Ulang Prices" disabled="true">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-toggle="tooltip" 
+                        title="Auto Set +/- Prices" 
+                        name="SLTActionSetPricesHigherLower" 
+                        id="SLTActionSetPricesHigherLower" class="form-control">
+                    <option value=""></option>
+                                            <option value="1">+/- 1 Poin</option>
+                                            <option value="2">+/- 2 Poin</option>
+                                            <option value="3">+/- 3 Poin</option>
+                                            <option value="4">+/- 4 Poin</option>
+                                            <option value="5">+/- 5 Poin</option>
+                                            <option value="6">+/- 6 Poin</option>
+                                            <option value="7">+/- 7 Poin</option>
+                                            <option value="8">+/- 8 Poin</option>
+                                            <option value="9">+/- 9 Poin</option>
+                                            <option value="10">+/- 10 Poin</option>
+                                            <option value="11">+/- 11 Poin</option>
+                                            <option value="12">+/- 12 Poin</option>
+                                            <option value="13">+/- 13 Poin</option>
+                                            <option value="14">+/- 14 Poin</option>
+                                            <option value="15">+/- 15 Poin</option>
+                                            <option value="16">+/- 16 Poin</option>
+                                            <option value="17">+/- 17 Poin</option>
+                                            <option value="18">+/- 18 Poin</option>
+                                            <option value="19">+/- 19 Poin</option>
+                                            <option value="20">+/- 20 Poin</option>
+                                    </select>
+            </span>
+            <span class="input-group-addon">
+                <select data-toggle="tooltip" 
+                        title="Auto Set Follow/Reversal, contoh jika +setprices(FOLLOW) = CALL" 
+                        name="SLTActionSetPricesFollowReversal" 
+                        id="SLTActionSetPricesFollowReversal" class="form-control">
+                    <option value=""></option>
+                    <option value="FOLLOW">FOLLOW</option>
+                    <option value="REVERSAL">REVERSAL</option>
+                </select>            
+            </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="text" 
+                       name="TXTActionSetPricesCALLorPUTOne" id="TXTActionSetPricesCALLorPUTOne" 
+                       class="form-control" placeholder="Prices 1"  />
+            </span>
+            <span class="input-group-addon">
+                <select data-toggle="tooltip" 
+                        title="Set Buy/CALL When Touches Prices" 
+                        name="SLTActionSetPricesCALLorPUTOne" 
+                        id="SLTActionSetPricesCALLorPUTOne" class="form-control">
+                    <option value=""></option>
+                    <option value="CALL">CALL</option>
+                    <option value="PUT">PUT</option>
+                </select>            
+            </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input type="text" 
+                       name="TXTActionSetPricesCALLorPUTTwo" id="TXTActionSetPricesCALLorPUTTwo" 
+                       class="form-control" placeholder="Prices 2"  />
+            </span>
+            <span class="input-group-addon">
+                <select data-toggle="tooltip" 
+                        title="Set Buy/CALL When Touches Prices" 
+                        name="SLTActionSetPricesCALLorPUTTwo" 
+                        id="SLTActionSetPricesCALLorPUTTwo" class="form-control">
+                    <option value=""></option>
+                    <option value="CALL">CALL</option>
+                    <option value="PUT">PUT</option>
+                </select>            
+            </span>
+        </div>
+    </div>
+    <hr />
+    <div id="BTNTombolCALLPUT">
+                <div class="panel panel-primary" id="DIVCTPanelHigherBTN" data-original-title="" data-toggle="tooltip" title="" style="display: none">
+            <div class="panel-heading" id="DIVCTPanelHigherBTNHEADING"></div>
+            <div class="panel-body"><button type="button" id="DIVCTPanelHigherBTNBODY" class="btn btn-primary btn-lg"></button></div>
+            <div class="panel-footer" id="DIVCTPanelHigherBTNFOOTER"></div>
+        </div>
+        <div class="panel panel-danger" id="DIVCTPanelLowerBTN" data-toggle="tooltip" title="" style="display: none">
+            <div class="panel-heading" id="DIVCTPanelLowerBTNHEADING"></div>
+            <div class="panel-body"><button type="button" id="DIVCTPanelLowerBTNBODY" class="btn btn-danger btn-lg"></button></div>
+            <div class="panel-footer" id="DIVCTPanelLowerBTNFOOTER"></div>
+        </div>
+        <div class="panel panel-success" id="DIVCTPanelHedgingBTN" data-toggle="tooltip" title="" style="display: none;">
+            <div class="panel-heading" id="DIVCTPanelHedgingBTNHEADING"></div>
+            <div class="panel-body"><button type="button" id="DIVCTPanelHedgingBTNBODY" class="btn btn-success btn-lg"></button></div>
+            <div class="panel-footer" id="DIVCTPanelHedgingBTNFOOTER"></div>
+        </div>
+    </div>
+</form>                    <div id="idChart">
+                        <canvas id="Chart" width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" id="MENUKOLOM">
+                <div class="hidein" style="display: none;">
+                    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="MENUStrategi" class="active">
+                    <a id="HREFStrategi" href="#Strategi">Strategi</a>
+                </li>
+                <li id="MENUContractType">
+                    <a id="HREFContractType" href="#ContractType">Tipe OP</a>
+                </li>
+                <li id="MENULabaRugi">
+                    <a id="HREFLabaRugi" href="#LabaRugi">Laba Rugi</a>
+                </li>
+                <!--
+                <li id="MENUSettingIndicator">
+                    <a id="HREFSettingIndi" href="#IndiBot">Setting Indi Bot</a>
+                </li> -->
+                <li id="MENUHighStock">
+                    <a id="HREFHighStock" href="#ChartsHighStock">Charts</a>
+                </li>
+                <li id="MENUTabelMartingale">
+                    <a id="HREFTabelMartingale" href="#TabelMartingale">Buat Marti</a>
+                </li>
+                <li id="MENUCopyTrade">
+                    <a id="HREFCopyTrade" href="#TabelCopyTrade">CopyTrade</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="HREFMenuAbout" href="#" onclick="Helper.init();">Bantuan</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>                    <div id="PGStrategi">
+    <div id="TableMarti"></div>
+    <div class="col-md-6">
+    <form id="login_token">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                Set Stake
+            </span>
+            <input 
+                data-toggle="tooltip" title="Pisahkan Marti dengan koma. decimal titik"
+                value="0.35, 0.41, 0.84, 1.74, 3.62, 7.51, 15.58" type="text" id="TXTMarti" class="form-control" placeholder="Marti" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                Auto Stake
+            </span>
+            <select name="TXTAutoStake" id="TXTAutoStake" class="form-control" data-live-search="true">
+                <option value="">Pilih Stake</option>
+                <option value="=0.35">= 0.35$</option>
+                <option value="=0.5">= 0.5$</option>
+                <option value="=1">= 1$</option>
+                <option value="=2">= 2$</option>
+                <option value="=bal/5">= Balance/5</option>
+                <option value="=bal/4">= Balance/4</option>
+                <option value="=bal/3">= Balance/3</option>
+                <option value="=bal/2">= Balance/2</option>
+                <option value="=bal">= Balance (Full Stake)</option>
+                <option value="=martiBalikLv5">= Marti Volati Lv 5 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiBalikLv6">= Marti Volati Lv 6 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiBalikLv7">= Marti Volati Lv 7 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiForexLv5">= Marti Forex Lv 5 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiForexLv6">= Marti Forex Lv 6 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiForexLv7">= Marti Forex Lv 7 (Balik Modal+Sedikit Profit)</option>
+                <option value="=martiDoubleLv5ST35">= Marti Double Saldo awal 0.35 max LV5</option>
+                <option value="=martiDoubleLv6ST35">= Marti Double Saldo awal 0.35 max LV6</option>
+                <option value="=martiDoubleLv7ST35">= Marti Double Saldo awal 0.35 max LV7</option>
+                <option value="=martiDoubleLv8ST35">= Marti Double Saldo awal 0.35 max LV8</option>
+                <option value="=martiDoubleLv5ST5">= Marti Double Saldo awal 0.5 max LV5</option>
+                <option value="=martiDoubleLv6ST5">= Marti Double Saldo awal 0.5 max LV6</option>
+                <option value="=martiDoubleLv7ST5">= Marti Double Saldo awal 0.5 max LV7</option>
+                <option value="=martiDoubleLv8ST5">= Marti Double Saldo awal 0.5 max LV8</option>
+            </select>
+        </div>
+                <div class="input-group" 
+             data-toggle="tooltip" 
+             title="Jika Tidak Memakai Marti lv1 Marti = Jumlah Stake">
+            <span class="input-group-addon">
+                <input type="checkbox" id="TXTOnOfMarti" checked="true">
+            </span>
+            <input type="text" class="form-control" Placeholder="Use Martingale?" disabled="true">
+            <span class="input-group-addon">
+                <input type="checkbox" id="TXTCompund" checked="true">
+            </span>
+            <input type="text" class="form-control" Placeholder="Compund Interest?" disabled="true">
+            <!--
+            <span class="input-group-addon">
+                <input type="checkbox" id="TXTAutoMarti" checked="true">
+            </span>
+            <input type="text" class="form-control" Placeholder="Auto Marti?" disabled="true">
+            -->
+        </div>
+        <!--
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>
+            </span>
+            <input value="" type="password" id="TXTCopy" class="form-control" placeholder="Copy Trade Token" aria-describedby="basic-addon1">
+            <span class="input-group-btn">
+                <button class="btn btn-default" id="BTNCopy" type="button">Login!</button>
+            </span>
+        </div>
+        <p id="OutputCopyID"></p>
+        <p id="OutputCopySaldo"></p>
+        -->
+        <div class="input-group" data-toggle="tooltip" title="Jumlah Target Balance Anda, Pastinya lebih dari Saldo. dan tuliskan angka saja biar system tidak error.">
+            <span class="input-group-addon">
+                Target Balance (BOT/Manual): 
+            </span>
+            <input type="number" class="form-control" id="TXTTakeProfit" Placeholder="Jumlah Take Profit Anda">
+        </div>
+    </form>
+    <hr />
+    <p 
+        data-toggle="tooltip" title="waktu tik binary adalah 2 detik. jika lebih dari 2 maka koneksi melambat." 
+        id="BTNPingServer" class="btn btn-primary">Ping Server Binary.com</p>
+        <hr />
+<form id="FRMAvailableBot" data-toggle="tooltip" title="BOT adalah alat bantu trading otomatis, gunakan dengan bijak. Run/Test Ketika Market sedang baik saja.">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+        </span>
+        <select name="SLTBotAvailable" id="SLTBotAvailable" class="form-control">
+            <option value="">-- Bot yang tersedia --</option>
+            <option value="BotAngka">Bot Angka Kembar</option>
+            <option value="BotPersenFollow">Bot Follow %</option>
+            <option value="BotFollowCandle">Bot Follow Candle</option>
+            <option value="BotRSIOnly">Bot RSI Only</option>
+            <option value="BotPatternUD10tik">Bot Jumlah Pattern U/D dalam 10 Tik</option>
+            <option value="BotSRTik">Bot S/R Tik</option>
+            <option value="IndiHelper">Setting Indikator</option>
+        </select>
+    </div>
+</form>
+<form id="BotPersenFollow" style="display: none;">
+    <hr />
+    <h4>Fitur Bot Follow %</h4>
+    <p>Info: Tentukan Berapa Presentasi Follow pada BOT</p>
+
+    <p 
+        data-toggle="tooltip" title="Prosentasi Win by Follow Tik. Contoh Tik naik:OP Rise 5 tik, dan sebaliknya. ini prosesntasenya selama 50 tik terakhir" 
+        id="BTNGoodTickFollow" class="btn btn-primary">% Follow</p>
+    <br />
+    <p 
+        data-toggle="tooltip" title="Prosentasi Win by CALL Tik." 
+        id="BTNGoodTickCALL" class="btn btn-primary">% CALL</p>
+    <br />
+    <p 
+        data-toggle="tooltip" title="Prosentasi Win by PUT Tik." 
+        id="BTNGoodTickPUT" class="btn btn-primary">% PUT</p>
+    <br />
+    <div class="input-group"
+         data-toggle="tooltip" 
+         title="Logic ini akan digunakan jika movement tik sesuai dengan %Follow yang diminta."
+         >
+        <span class="input-group-addon">
+            Bot Aktif %Follow Sesuai Gerakan Tik
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotPersenFollowCheck" checked="true">
+        </span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            % Follow >
+        </span>
+        <input 
+            data-toggle="tooltip" 
+            title="%Follow yang ditentukan untuk OP Bersamaan dengan %CALL/%PUT, Semakin tinggi % Semakin lama signal."
+            type="number" class="form-control" id="TXTBotPersenFollow" Placeholder="Jumlah Persen Follow" min="20" max="99" value="60">
+        <span class="input-group-addon">
+            % CALL/PUT > 
+        </span>
+        <input 
+            data-toggle="tooltip" 
+            title="%Call/Put yang disesuaikan, jika % diatas maka OP mengikuti tik."
+            type="number" class="form-control" id="TXTBotPersenCALLPUT" Placeholder="Jumlah Persen CALL/PUT" min="20" max="99" value="70">
+    </div>
+    <div class="input-group"
+         data-toggle="tooltip" 
+         title="Logic ini akan digunakan jika movement tik sesuai dengan %Follow yang diminta. (OP Reversal)"
+         >
+        <span class="input-group-addon">
+            Bot Aktif %Follow Sesuai Gerakan Tik (Reversal)
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotPersenFollowCheckREVERSAL" checked="true">
+        </span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">
+            % Follow <
+        </span>
+        <input 
+            data-toggle="tooltip" 
+            title="%Follow yang ditentukan untuk OP Bersamaan dengan %CALL/%PUT, Eksekusi digunakan jika %Follow Kurang dari point %Follow."
+            type="number" class="form-control" id="TXTBotPersenFollowREVERSAL" Placeholder="Jumlah Persen Follow" min="20" max="99" value="40">
+        <span class="input-group-addon">
+            % CALL/PUT <
+        </span>
+        <input 
+            data-toggle="tooltip" 
+            title="%Call/Put yang disesuaikan, jika % diatas maka OP mengikuti tik (eksekusi REVERSAL)."
+            type="number" class="form-control" id="TXTBotPersenCALLPUTREVERSAL" Placeholder="Jumlah Persen CALL/PUT" min="20" max="99" value="25">
+    </div>
+    <div class="input-group"
+         data-toggle="tooltip" 
+         title="Logic ini akan mengeksekusi hanya ketika sinyal CALL/PUT saja. jika dua duanya dicentang, maka EKSEKUSI pada salah satu jika ada sinyal."
+         >
+        <span class="input-group-addon">
+            Eksekusi CALL saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotPersenFollowCheckCALLONLY" checked="true">
+        </span>
+        <span class="input-group-addon">
+            Eksekusi PUT saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotPersenFollowCheckPUTONLY" checked="true">
+        </span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotSesuaiPersentase" type="button">Start Bot!</button>
+        </span>
+    </div>
+    <p>Market tidak selalu bisa ditebak.</p>
+</form><form id="BotAngka" style="display: none;">
+    <hr />
+    <h4>Fitur Bot Angka Kembar</h4>
+    <a href="img/3214aa80-30c0-4257-acea-27b445ff29ee.jpg" target="_blank">Sumber Informasi</a>
+
+    <div class="input-group"
+         data-toggle="tooltip" 
+         title="Logic ini akan mengeksekusi hanya ketika sinyal CALL/PUT saja. jika dua duanya dicentang, maka EKSEKUSI pada salah satu jika ada sinyal."
+         >
+        <span class="input-group-addon">
+            Eksekusi CALL saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotAngkaCheckCALLONLY" checked="true">
+        </span>
+        <span class="input-group-addon">
+            Eksekusi PUT saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotAngkaCheckPUTONLY" checked="true">
+        </span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotAngkaSama" type="button">Start Bot!</button>
+        </span>
+    </div>
+    <p>Sesudah Tim melakukan Test, Bot ini akan lebih bagus ketika digunakan dalam trend. Sideway tidak dianjurkan.
+        Anda kami berikan Opsi untuk hanya mengambil Opsi Put saja atau Call saja atau keduanya(tapi tidak dianjurkan) ketika Bot berjalan.
+        Anda bisa edit Tanpa Men-STOP bot.
+    </p>
+</form><form id="BotFollowCandle" style="display: none;">
+    <hr />
+    <h4>Fitur Bot Follow Candle</h4>
+    <p>Bot Follow Candle 1 Menit. Bot perlu menunggu 1 menit untuk memperoleh trend Rise/Fall.</p>
+
+    <div id="DIVCanvasBotFollowCandle"></div>
+    <div class="input-group"
+         data-toggle="tooltip" 
+         title="Logic ini akan mengeksekusi hanya ketika sinyal CALL/PUT saja. jika dua duanya dicentang, maka EKSEKUSI pada salah satu jika ada sinyal."
+         >
+        <span class="input-group-addon">
+            Eksekusi CALL saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotFollowCandleCALLONLY" checked="true">
+        </span>
+        <span class="input-group-addon">
+            Eksekusi PUT saja
+        </span>
+        <span class="input-group-addon">
+            <input type="checkbox" id="TXTBotFollowCandlePUTONLY" checked="true">
+        </span>
+    </div>
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotFollowCandle" type="button">Start Bot!</button>
+        </span>
+    </div>
+    <p>Anda kami berikan Opsi untuk hanya mengambil Opsi Put saja atau Call saja atau keduanya(tapi tidak dianjurkan) ketika Bot berjalan.
+        Anda bisa edit Tanpa Men-STOP bot.
+    </p>
+</form><form id="IndiHelper" style="display: none;">
+    <hr />
+    <h4>Indicator Setting</h4>
+    <h5>Bollinger Band</h5>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+            <input type="checkbox" id="CHKIndiBollingerBandaktif" />
+        </span>
+        <span class="input-group-addon" id="basic-addon1">
+            Option: 
+        </span>
+        <input type="number" id="TXTIndiBollingerBandSMA" class="form-control" value="20" />
+        <input type="number" id="TXTIndiBollingerBandSTDEV" class="form-control" value="2" />
+    </div>
+    <p>Bollinger Band Menggunakan Rumus Standard SMA 20 dan Standard Deviation Price x 2, biasa ditulis 20,2</p>
+    <hr />
+    <h5>SMA 1</h5>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKIndiSMAaktif1" />
+        </span>
+        <span class="input-group-addon">
+            SMA: 
+        </span>
+        <input type="number" id="TXTIndiSMA1" class="form-control" value="50" />
+    </div>
+    <p>SMA adalah Price Average</p>
+    <hr />
+    <h5>SMA 2</h5>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKIndiSMAaktif2" />
+        </span>
+        <span class="input-group-addon">
+            SMA: 
+        </span>    
+        <input type="number" id="TXTIndiSMA2" class="form-control" value="100" />
+    </div>
+    <hr />
+    <h5>MACD (Moving average convergence divergence)</h5>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKIndiMACDAktif" />
+        </span>
+        <span class="input-group-addon">
+            Option: 
+        </span>    
+        <input type="number" id="TXTIndiMACDEMAFast" class="form-control" value="12" />
+        <input type="number" id="TXTIndiMACDEMASlow" class="form-control" value="26" />
+        <input type="number" id="TXTIndiMACDSignal" class="form-control" value="9" />
+    </div>
+    <p>Default MACD Value: 12,26,9 (EMA fast, EMA slower, Signal)</p>
+    <hr />
+    <h5>RSI (Relative Strength Index )</h5>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKIndiRSIAktif" />
+        </span>
+        <span class="input-group-addon">
+            RSI: 
+        </span>    
+        <input type="number" id="TXTIndiRSIOpsi" class="form-control" value="9" />
+    </div>
+    <p>Default RSI Value: 14 (Terlalu panjang), untuk tik biasanya 9. 
+        Please note: Rumus RSI kadang beda di binary. saya dari rumus stockchart.
+    </p>
+</form><form id="BotPatternUD10tik" style="display: none;">
+    <hr />
+    <h4>BOT Pattern U/D dalam 10 tik</h4>
+    <div id="DIVPatternUD10tik"></div>
+    <h5>Setting Pattern</h5>
+    <hr />
+    <p>Bot lebih bagus dieksekusi 5/6 tik</p>
+    <hr />
+    <p>Set Jumlah minimal U / Up dalam 10 tik dan pilih eksekusi. 
+        jika tidak menginginkan eksekusi, silahkan dikosongi</p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            Jumlah U (up) minimal dalam 10 tik
+        </span>    
+        <input type="number" id="TXTBotPUD10U" class="form-control" value="7" />
+        <select class="form-control" id="SLTBotPUD10U">
+            <option></option>
+            <option value="CALL" selected="">CALL</option>
+            <option value="PUT">PUT</option>
+        </select>
+    </div>
+    <hr />
+    <p>Set Jumlah minimal D / Down dalam 10 tik dan pilih eksekusi. 
+        jika tidak menginginkan eksekusi, silahkan dikosongi</p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            Jumlah D (down) minimal dalam 10 tik
+        </span>
+        <input type="number" id="TXTBotPUD10D" class="form-control" value="7" />
+        <select class="form-control" id="SLTBotPUD10D">
+            <option></option>
+            <option value="PUT" selected="">PUT</option>
+            <option value="CALL">CALL</option>
+        </select>
+    </div>
+    <hr />
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotPatternUD10tik" type="button">Start Bot!</button>
+        </span>
+    </div>
+</form><form id="BotSRTik" style="display: none;">
+    <hr />
+    <h4>BOT S/R tik (Breakout/Reversal)</h4>
+    <div id="DIVCanvasBotSRTik"></div>
+    <h5>Setting Bot</h5>
+    <hr />
+    <div class="input-group">
+        <span class="input-group-addon">
+            Hitung S/R dari History Terakhir (Menit): 
+        </span>    
+        <input type="number" min="1" id="TXTBotSRTikMenit" class="form-control" value="5" />
+    </div>
+    <hr />
+    <p>Untuk menghitung jika sudah trend dan melewati S/R, 
+        maka ada point yg ditambahkan jika sudah melewati S/R, maka OP mengikuti Trend / Sebaliknya Reversal.</p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            Point Melewati S/R Eksekusi
+        </span>    
+        <input type="number" step="0.001" id="TXTBotSRTikPoint" class="form-control" value="" />
+    </div>
+    <hr />
+    <div class="input-group">
+        <span class="input-group-addon">
+            OP Follow/Reversal
+        </span>    
+        <select class="form-control" id="SLTBotSRTikOP">
+            <option value="FOLLOW" selected="">FOLLOW</option>
+            <option value="REVERSAL">REVERSAL</option>
+        </select>
+    </div>
+    <hr />
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotSRTik" type="button">Start Bot!</button>
+        </span>
+    </div>
+</form><form id="BotRSIOnly" style="display: none;">
+    <hr />
+    <h4>BOT RSI</h4>
+    <div id="DIVCanvasBotRSIOnly"></div>
+    <h5>Setting RSI (Relative Strength Index )</h5>
+    <p class="bg-success">RSI Last Value: <b><span id="BOTRSIspanLastValue"></span></b></p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            RSI: 
+        </span>    
+        <input type="number" id="TXTBotRSIOpsi" class="form-control" value="14" />
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" data-toggle="tooltip" data-original-title="OP CALL ketika dibawah poin">
+            OP Call Rule < (kurang dari) (OverSold)
+        </span>    
+        <input type="number" id="TXTBotRSICall" class="form-control" value="30" />
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" data-toggle="tooltip" data-original-title="OP CALL ketika dibawah poin">
+            OP Put Rule > (lebih dari) (OverBought)
+        </span>    
+        <input type="number" id="TXTBotRSIPut" class="form-control" value="70" />
+    </div>
+    <hr />
+    <p>Bot Lock Oversold/Overbought dari trend.  
+        Misal ketika sudah menyentuh Oversold (dibawah) tapi masih trend dan OP Loss.
+        Maka Oversold Lagi tidak Bisa karena Lock, Maka OP Berikutnya harus OverBought</p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKBotRSILockOver" checked="true">
+        </span>
+        <input type="text" class="form-control" Placeholder="Bot Lock OverSold / OverBought?" disabled="true">
+    </div>
+    <hr />
+    <p>Kejar Reversal, 
+        OP dari trend jika anda yakin trend akan berbalik, Bot akan terus OP reversal sampai Win. 
+        Mengaktifkan Bot Kejar Reversal, akan menonaktifkan Bot Lock OverSold/Overbought
+    </p>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input type="checkbox" id="CHKBotRSIKejarReversal">
+        </span>
+        <input type="text" class="form-control" Placeholder="Bot Kejar Reversal?" disabled="true">
+    </div>
+    <hr />
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" id="BTNBotRSIOnly" type="button">Start Bot!</button>
+        </span>
+    </div>
+    <p>Default RSI Value: 14, 
+        Please note: Rumus RSI kadang beda di binary. 
+        RSI dirumus dari banyaknya history gain dan loss dibelakangnya. 
+        semakin panjang history maka RSI akan semakin Bagus
+    </p>
+</form></div>
+<div class="col-md-6">
+    <canvas id="ChartTick" width="400" height="300"></canvas>
+    <div id="OutputProfitTable"></div>
+</div></div>                    <div id="PGLabaRugi" style="display: none;">
+    <div class="col-md-12">
+
+    </div>
+    <div id="PGLabaRugiContent" style="width: 100%;height: 550px; overflow: scroll;"></div>
+</div>                    <div id="PGTradingView" style="display: none;">
+    <div class="embed-responsive holds-the-iframe embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://tradingview.binary.com/" height="700px"></iframe>
+    </div>
+</div>                    <div id="PGHighStock" style="display: none;">
+    <a id="HREFHighStock" href="#ChartsHighStock" class="btn btn-primary">Charts (Binary.com)</a>
+    <a id="HREFTradingview" href="#ChartsTradingView" class="btn btn-default">Charts (TradingView)</a>
+    <div class="embed-responsive holds-the-iframe embed-responsive-16by9">
+        <iframe id="IFRHighStock" class="embed-responsive-item" src=""  height="700px"></iframe>
+    </div>
+    </div>                    <div id="PGContractType" style="display: none;">
+    <div class="col-md-12">
+        <p>Gunakan tool ini untuk mengelola Trading Style anda. 
+            HI/LO Barier, Hedging HI/LO, Touch/No Touch (TNT), In/Out.</p>
+        <p>Untuk membantu anda dengan lebih baik. 
+            Tool ini dapat anda gunakan untuk OP HILO dengan Barier Offset tanpa anda ketikkan +/-,
+            Hal yang sama juga bisa dilakukan dengan TNT tinggi/bawah dan IO tinggi/bawah</p>
+        <p class="btn btn-danger">Set Stake anda di Halaman Srategi.</p>
+        <hr />
+        <form id="FRMTableMartingale">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Pilih Tipe Kontrak (OP)
+                </span>
+                <select id="SLTContractTypeTipeOP" class="form-control">
+                    <option value="DIVCTCallPut">Call/Put (Rise/Fall) min 5 Tik</option>
+                    <option value="DIVCTHLBarierTarget">Higher/Lower (Barier Offset +/-) On Target min 5 Tik</option>
+                    <option value="DIVCTHLBarierSideway">Higher/Lower (Barier Offset +/-) On Sideway (Contoh: barier+ OP lower) min 5 Tik</option>
+                    <option value="DIVCTHLHedging">Higher/Lower (Hedging, 2x OP) min 5 Tik</option>
+                    <option value="DIVCTTouchesBerier">Touches (Barier Offset +/-) min 2 Menit</option>
+                    <!-- <option value="DIVCTTouchesHedging">Touches (Barier Offset +/-) with Hedging 2x OP (+ & - Barier) min 2 Menit</option> -->
+                    <option value="DIVCTDNTBarier">Does Not Touch (Barier Offset +/-) min 2 Menit</option>
+                    <!-- <option value="DIVCTDNTHedging">Does Not Touch (Hedging, 2x OP) min 2 Menit</option> -->
+                    <option value="DIVCTIOEB">IO Ends Between (2 Barier Offset tinggi dan rendah) min 2 Menit</option>
+                    <option value="DIVCTIOEO">IO Ends Outside (2 Barier Offset tinggi dan rendah) min 2 Menit</option>
+                    <option value="DIVCTIOSB">IO Stays Between (2 Barier Offset tinggi dan rendah) min 2 Menit</option>
+                    <option value="DIVCTIOGO">IO Goes Outside (2 Barier Offset tinggi dan rendah) min 2 Menit</option>
+                </select>
+            </div>
+            <hr />
+            <div ID="DIVContractTypeAllTipe">
+                <div class="col-md-4">
+                    <div class="input-group" id="DIVCTBarierGlobal">
+                        <span class="input-group-addon" id="basic-addon1">
+                            Barier Hi/Lo/T/DNT
+                        </span>
+                        <input id="TXTCTBarierGlobal" type="number" min="" class="form-control" step="0.0001" value="">
+                    </div>
+                    <hr />
+                    <div class="input-group" id="DIVCTTNTIOGlobal">
+                        <span class="input-group-addon" id="basic-addon1">
+                            Barier In/Out (IO)
+                        </span>
+                        <input id="TXTCTTNTIOGlobal" type="number" min="" class="form-control" step="0.0001" value="">
+                    </div>
+                    <hr />
+                    <p class="btn btn-success">Set Durasi di Menu sebelah kiri</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary" id="DIVCTPanelHigher" data-original-title="" data-toggle="tooltip" title="" style="display: none">
+                        <div class="panel-heading" id="DIVCTPanelHigherHEADING"></div>
+                        <div class="panel-body" id="DIVCTPanelHigherBODY"></div>
+                        <div class="panel-footer" id="DIVCTPanelHigherFOOTER"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-danger" id="DIVCTPanelLower" data-toggle="tooltip" title="" style="display: none">
+                        <div class="panel-heading" id="DIVCTPanelLowerHEADING"></div>
+                        <div class="panel-body" id="DIVCTPanelLowerBODY"></div>
+                        <div class="panel-footer" id="DIVCTPanelLowerFOOTER"></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-success" id="DIVCTPanelHedging" data-toggle="tooltip" title="" style="display: none;">
+                        <div class="panel-heading" id="DIVCTPanelHedgingHEADING"></div>
+                        <div class="panel-body" id="DIVCTPanelHedgingBODY"></div>
+                        <div class="panel-footer" id="DIVCTPanelHedgingFOOTER"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>                    <div id="PGTabelMartingale" style="display: none;">
+    <div class="col-md-12">
+        <p>Tool ini dapat membantu anda membuat table martingale Sesuai dengan kebutuhan trading anda.
+            Contoh: anda ingin memulai di IO dengan persen Laba 220%, modal awal 2$ dan ambil profit dari selesai Martingale 0.5$
+        </p>
+        <form id="FRMTableMartingale">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Modal Awal Anda
+                </span>
+                <input id="TXTTabelMartingaleModalAwal" type="number" min="0.35" class="form-control" step="0.01" value="0.35">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Persen Laba Per Transaksi (tuliskan angka saja, dalam satuan persen)
+                </span>
+                <input id="TXTTabelMartingalePersenLaba" type="number" class="form-control" step="0.01" value="93">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    MAX Level Martingale
+                </span>
+                <select name="SLTTableMartingaleMaxLevel" id="SLTTableMartingaleMaxLevel" class="form-control" data-live-search="true">
+                                            <option value="1" >Level 1</option>
+                                                    <option value="2" >Level 2</option>
+                                                    <option value="3" >Level 3</option>
+                                                    <option value="4" >Level 4</option>
+                                                    <option value="5" >Level 5</option>
+                                                    <option value="6" >Level 6</option>
+                                                    <option value="7" selected>Level 7</option>
+                                                    <option value="8" >Level 8</option>
+                                                    <option value="9" >Level 9</option>
+                                                    <option value="10" >Level 10</option>
+                                                    <option value="11" >Level 11</option>
+                                                    <option value="12" >Level 12</option>
+                                                    <option value="13" >Level 13</option>
+                                                    <option value="14" >Level 14</option>
+                                                    <option value="15" >Level 15</option>
+                                                    <option value="16" >Level 16</option>
+                                                    <option value="17" >Level 17</option>
+                                                    <option value="18" >Level 18</option>
+                                                    <option value="19" >Level 19</option>
+                                                    <option value="20" >Level 20</option>
+                                                    <option value="21" >Level 21</option>
+                                                    <option value="22" >Level 22</option>
+                                                    <option value="23" >Level 23</option>
+                                                    <option value="24" >Level 24</option>
+                                                    <option value="25" >Level 25</option>
+                                                    <option value="26" >Level 26</option>
+                                                    <option value="27" >Level 27</option>
+                                                    <option value="28" >Level 28</option>
+                                                    <option value="29" >Level 29</option>
+                                                    <option value="30" >Level 30</option>
+                                                    <option value="31" >Level 31</option>
+                                                    <option value="32" >Level 32</option>
+                                                    <option value="33" >Level 33</option>
+                                                    <option value="34" >Level 34</option>
+                                                    <option value="35" >Level 35</option>
+                                                    <option value="36" >Level 36</option>
+                                                    <option value="37" >Level 37</option>
+                                                    <option value="38" >Level 38</option>
+                                                    <option value="39" >Level 39</option>
+                                                    <option value="40" >Level 40</option>
+                                                    <option value="41" >Level 41</option>
+                                                    <option value="42" >Level 42</option>
+                                                    <option value="43" >Level 43</option>
+                                                    <option value="44" >Level 44</option>
+                                                    <option value="45" >Level 45</option>
+                                                    <option value="46" >Level 46</option>
+                                                    <option value="47" >Level 47</option>
+                                                    <option value="48" >Level 48</option>
+                                                    <option value="49" >Level 49</option>
+                                                    <option value="50" >Level 50</option>
+                                                    <option value="51" >Level 51</option>
+                                                    <option value="52" >Level 52</option>
+                                                    <option value="53" >Level 53</option>
+                                                    <option value="54" >Level 54</option>
+                                                    <option value="55" >Level 55</option>
+                                                    <option value="56" >Level 56</option>
+                                                    <option value="57" >Level 57</option>
+                                                    <option value="58" >Level 58</option>
+                                                    <option value="59" >Level 59</option>
+                                                    <option value="60" >Level 60</option>
+                                                    <option value="61" >Level 61</option>
+                                                    <option value="62" >Level 62</option>
+                                                    <option value="63" >Level 63</option>
+                                                    <option value="64" >Level 64</option>
+                                                    <option value="65" >Level 65</option>
+                                                    <option value="66" >Level 66</option>
+                                                    <option value="67" >Level 67</option>
+                                                    <option value="68" >Level 68</option>
+                                                    <option value="69" >Level 69</option>
+                                                    <option value="70" >Level 70</option>
+                                                    <option value="71" >Level 71</option>
+                                                    <option value="72" >Level 72</option>
+                                                    <option value="73" >Level 73</option>
+                                                    <option value="74" >Level 74</option>
+                                                    <option value="75" >Level 75</option>
+                                                    <option value="76" >Level 76</option>
+                                                    <option value="77" >Level 77</option>
+                                                    <option value="78" >Level 78</option>
+                                                    <option value="79" >Level 79</option>
+                                                    <option value="80" >Level 80</option>
+                                                    <option value="81" >Level 81</option>
+                                                    <option value="82" >Level 82</option>
+                                                    <option value="83" >Level 83</option>
+                                                    <option value="84" >Level 84</option>
+                                                    <option value="85" >Level 85</option>
+                                                    <option value="86" >Level 86</option>
+                                                    <option value="87" >Level 87</option>
+                                                    <option value="88" >Level 88</option>
+                                                    <option value="89" >Level 89</option>
+                                                    <option value="90" >Level 90</option>
+                                                    <option value="91" >Level 91</option>
+                                                    <option value="92" >Level 92</option>
+                                                    <option value="93" >Level 93</option>
+                                                    <option value="94" >Level 94</option>
+                                                    <option value="95" >Level 95</option>
+                                                    <option value="96" >Level 96</option>
+                                                    <option value="97" >Level 97</option>
+                                                    <option value="98" >Level 98</option>
+                                                    <option value="99" >Level 99</option>
+                                                    <option value="100" >Level 100</option>
+                                            </select>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Type Martingale
+                </span>
+                <select name="SLTTableMartingaleTipeMarti" id="SLTTableMartingaleTipeMarti" class="form-control">
+                    <option value="">-- Type Strategi Martingale Anda --</option>
+                    <option value="DIVTabelMartingaleBalanceKali" selected>= Balance dikali (pilih dikali berapa)</option>
+                    <option value="DIVTabelMartingaleSetProfit">Anda Mentarget Berapa $ profit.</option>
+                </select>
+            </div>
+            <div id="DIVTabelMartingaleBalanceKali">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                        Perkalian Balance Per Loss
+                    </span>
+                    <input id="TXTTabelMartingaleDikaliBalance" type="number" class="form-control" step="0.01" value="1.9">
+                </div>
+            </div>
+            <div id="DIVTabelMartingaleSetProfit" style="display: none;">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                        Take Profit Anda Per Martingale ($)
+                    </span>
+                    <input id="TXTTabelMartingaleSetProfit" type="number" class="form-control" step="0.01" value="0.1">
+                </div>
+            </div>
+        </form>
+        <pre>No. = Level Martingale
+Stake = Bet Amount
+Loss = Total Loss
+Profit WIN = Profit if WIN From stake (Stake * Persen LABA)
+NET Profit = ((Stake*Persen)-Loss) / (Profit WIN - Total Loss)
+Beban (Modal) = Investment Amount (Total All Stake)</pre>
+        <button id="BTNTabelMartingaleSetStakeIntoStrategi" class="btn btn-warning" style="display: none;">
+            Set Stake Martingale ini ke Stake Strategi
+        </button>
+        <div id="DIVTableMartingaleOutput"></div>
+    </div>
+</div>                    <div id="PGCopyTrade" style="display: none;">
+    <div class="col-md-12">
+        <p class="bg-danger">System Copy Membutuhkan koneksi yg cepat dan stabil.</p>
+        <p class="bg-danger">PERHATIAN: jika ada 1 saja *instance yg diskonek maka system akan refresh dan anda mengulangi langkah login kembali.</p>
+        <p class="bg-danger">Ada jeda 1 tik(1-2 detik) jika OP dilakukan dari web Binary, dan mohon agar sistem tidak error dan mengganggu akun akun lainnya, maka Eksekusi OP pada master hanya dilakukan satu kali OP, jika sudah closing OP, maka anda boleh melakukan OP berikutnya.</p>
+        <p class="bg-warning">*Instance adalah jumlah koneksi yang akan diperlukan, tiap kali anda merubah jumlah instance, data instance akan direset dan anda perlu login kembali.</p>
+        <p class="bg-warning">Anda diperbolehkan mengganti setiap instance copy / akun sendiri sendiri, namun eksekusi OP masih sama seperti awal.</p>
+        <form id="FRMTableMartingale">
+            <!--
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Pilih System Trading Copy Trade (dari tool/dari web Binary)
+                </span>
+                <select id="SLTCopyTradeSources" class="form-control">
+                    <option value="tool">Dari tool (web ini)</option>
+                    <option value="binary">Dari Binary.com (eksekusi OP di Binary.com, jeda 1-2 detik)</option>
+                </select>
+            </div>
+            -->
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">
+                    Berapa Banyak Instance untuk dicopy
+                </span>
+                <select id="SLTCopyTradeNumberInstance" class="form-control">
+                    <option></option>
+                                            <option value="1">1 Instance Copy Trade</option>
+                                            <option value="2">2 Instance Copy Trade</option>
+                                            <option value="3">3 Instance Copy Trade</option>
+                                            <option value="4">4 Instance Copy Trade</option>
+                                            <option value="5">5 Instance Copy Trade</option>
+                                            <option value="6">6 Instance Copy Trade</option>
+                                            <option value="7">7 Instance Copy Trade</option>
+                                            <option value="8">8 Instance Copy Trade</option>
+                                            <option value="9">9 Instance Copy Trade</option>
+                                            <option value="10">10 Instance Copy Trade</option>
+                                            <option value="11">11 Instance Copy Trade</option>
+                                            <option value="12">12 Instance Copy Trade</option>
+                                            <option value="13">13 Instance Copy Trade</option>
+                                            <option value="14">14 Instance Copy Trade</option>
+                                            <option value="15">15 Instance Copy Trade</option>
+                                            <option value="16">16 Instance Copy Trade</option>
+                                            <option value="17">17 Instance Copy Trade</option>
+                                            <option value="18">18 Instance Copy Trade</option>
+                                            <option value="19">19 Instance Copy Trade</option>
+                                            <option value="20">20 Instance Copy Trade</option>
+                                            <option value="21">21 Instance Copy Trade</option>
+                                            <option value="22">22 Instance Copy Trade</option>
+                                            <option value="23">23 Instance Copy Trade</option>
+                                            <option value="24">24 Instance Copy Trade</option>
+                                            <option value="25">25 Instance Copy Trade</option>
+                                            <option value="26">26 Instance Copy Trade</option>
+                                            <option value="27">27 Instance Copy Trade</option>
+                                            <option value="28">28 Instance Copy Trade</option>
+                                            <option value="29">29 Instance Copy Trade</option>
+                                            <option value="30">30 Instance Copy Trade</option>
+                                            <option value="31">31 Instance Copy Trade</option>
+                                            <option value="32">32 Instance Copy Trade</option>
+                                            <option value="33">33 Instance Copy Trade</option>
+                                            <option value="34">34 Instance Copy Trade</option>
+                                            <option value="35">35 Instance Copy Trade</option>
+                                            <option value="36">36 Instance Copy Trade</option>
+                                            <option value="37">37 Instance Copy Trade</option>
+                                            <option value="38">38 Instance Copy Trade</option>
+                                            <option value="39">39 Instance Copy Trade</option>
+                                            <option value="40">40 Instance Copy Trade</option>
+                                            <option value="41">41 Instance Copy Trade</option>
+                                            <option value="42">42 Instance Copy Trade</option>
+                                            <option value="43">43 Instance Copy Trade</option>
+                                            <option value="44">44 Instance Copy Trade</option>
+                                            <option value="45">45 Instance Copy Trade</option>
+                                            <option value="46">46 Instance Copy Trade</option>
+                                            <option value="47">47 Instance Copy Trade</option>
+                                            <option value="48">48 Instance Copy Trade</option>
+                                            <option value="49">49 Instance Copy Trade</option>
+                                            <option value="50">50 Instance Copy Trade</option>
+                                            <option value="51">51 Instance Copy Trade</option>
+                                            <option value="52">52 Instance Copy Trade</option>
+                                            <option value="53">53 Instance Copy Trade</option>
+                                            <option value="54">54 Instance Copy Trade</option>
+                                            <option value="55">55 Instance Copy Trade</option>
+                                            <option value="56">56 Instance Copy Trade</option>
+                                            <option value="57">57 Instance Copy Trade</option>
+                                            <option value="58">58 Instance Copy Trade</option>
+                                            <option value="59">59 Instance Copy Trade</option>
+                                            <option value="60">60 Instance Copy Trade</option>
+                                            <option value="61">61 Instance Copy Trade</option>
+                                            <option value="62">62 Instance Copy Trade</option>
+                                            <option value="63">63 Instance Copy Trade</option>
+                                            <option value="64">64 Instance Copy Trade</option>
+                                            <option value="65">65 Instance Copy Trade</option>
+                                            <option value="66">66 Instance Copy Trade</option>
+                                            <option value="67">67 Instance Copy Trade</option>
+                                            <option value="68">68 Instance Copy Trade</option>
+                                            <option value="69">69 Instance Copy Trade</option>
+                                            <option value="70">70 Instance Copy Trade</option>
+                                            <option value="71">71 Instance Copy Trade</option>
+                                            <option value="72">72 Instance Copy Trade</option>
+                                            <option value="73">73 Instance Copy Trade</option>
+                                            <option value="74">74 Instance Copy Trade</option>
+                                            <option value="75">75 Instance Copy Trade</option>
+                                            <option value="76">76 Instance Copy Trade</option>
+                                            <option value="77">77 Instance Copy Trade</option>
+                                            <option value="78">78 Instance Copy Trade</option>
+                                            <option value="79">79 Instance Copy Trade</option>
+                                            <option value="80">80 Instance Copy Trade</option>
+                                            <option value="81">81 Instance Copy Trade</option>
+                                            <option value="82">82 Instance Copy Trade</option>
+                                            <option value="83">83 Instance Copy Trade</option>
+                                            <option value="84">84 Instance Copy Trade</option>
+                                            <option value="85">85 Instance Copy Trade</option>
+                                            <option value="86">86 Instance Copy Trade</option>
+                                            <option value="87">87 Instance Copy Trade</option>
+                                            <option value="88">88 Instance Copy Trade</option>
+                                            <option value="89">89 Instance Copy Trade</option>
+                                            <option value="90">90 Instance Copy Trade</option>
+                                            <option value="91">91 Instance Copy Trade</option>
+                                            <option value="92">92 Instance Copy Trade</option>
+                                            <option value="93">93 Instance Copy Trade</option>
+                                            <option value="94">94 Instance Copy Trade</option>
+                                            <option value="95">95 Instance Copy Trade</option>
+                                            <option value="96">96 Instance Copy Trade</option>
+                                            <option value="97">97 Instance Copy Trade</option>
+                                            <option value="98">98 Instance Copy Trade</option>
+                                            <option value="99">99 Instance Copy Trade</option>
+                                            <option value="100">100 Instance Copy Trade</option>
+                                    </select>
+            </div>
+        </form>
+        <div id="DIVCopyTradeHTML"></div>
+    </div>
+</div>                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12">
+            <div align="center" style="text-align: center">
+                Grup Whatsapp : <a class="btn btn-success" target="_blank" href="https://chat.whatsapp.com/9xPMqFSkrpB62comRKkOGG">Gabung Grup Binary Tool</a> 
+                |
+                Grup Facebook : <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/groups/binarytool/">Gabung Grup Binary Tool</a> 
+            </div>
+            <hr />
+            <div align="center" style="text-align: center">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" id="BTNRefresh" type="button">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            Refresh, Jika anda berganti Token. Gunakan Tombol ini untuk menghapus semua Cookie.</button>
+                    </span>
+                </div>
+                <p>Copyright 2017, Binary Tool V 13 - 
+                    Silahkan Email ke <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="503d3510343f3e297e31233931">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script> Jika ada ide BOT/Analisa/Hitungan Dst.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>var _0xeec6=['wr0iw5JWYUkDw6hkDw==','C8KRwoVHw5lJ','wp0xwpDDq8O2Hw==','w4jDun7CqMOndw==','wpLDtivDosKZHXQ=','wrIvw51DVk4=','dcOuRcO+wqF7wqw=','UzQaPmo=','w5bDumTCusOhcQIdw6XCmQTDsMKvOMO9fcKaw79r','w77Dt8OKdsK5w71EP0HCrMKww6TDuMO8wqrCr8KRGsOIwrw5TMKEcgdKwrjDmywswqJs','Yj/ClR1yOWE=','wpTDkQ7ChMKpw43CqA==','woY1wozDog==','bj8OZW0=','w4HDrWLCoMOh','GyM1w6hzw7hpP8O5','f8KYwrwTag==','wrIlw5Q=','UcKEw6gRX1Ix','BMKbwoVTw4JNwrM=','ViEIJ3Q=','fDLDnMK/wrrCuWU=','wqdUJRc=','w7DDtG/CuEPCvSs=','ZGtMw5jCmQ==','w4fDiTjCtMOlw7HChg==','ecO4QsO+wqlAwqNYwp4=','fSgFZG8=','C8KOYw==','aC/Dm8K4wrA=','Iy7DkcK+wrzCpXTDoFJhwoLDtcKPQsOrwr/DontPY11oH1lAOkdHwo0lw5HCsi3CtMK8wp/Dn8K+wrkcw6jDlsO1wp3DhsO1dDIeGsODfRo4Bw==','KGRQ','wr4IMcK7w7s=','wqgvwonComkKLMK9wq41w7Izw7huwoIwwrU5K3xgdQbDuSUtw6Vkw5HDuFzDg2TDm8Opwp0nwpt0wpB9N0DDpFbCmcOpdMKIT8KPw7Y+w5VPw77DtcO9','w6/CpCA=','JSkPYmPCkcOUeg==','woRlwoZGw7XCjsKnw7k=','esOhwpPCssOMwr4=','w6DDq23Colg=','w6PDpsKLesKk','E8Kuw5c3w7jDqcKx','Z8KPwrMXe0U=','LTYhN8K8','CD4kw75qw6Nu','AsKxHBkXwpdNcQ==','wrrDvMKBZ8Klw7pYJQ4=','wow3Jw==','EcKRwplTw4ROwrg=','ZcO7wpLCoMOMwqXDpsOv','WMKCwo5Sw55IwrnDgXM=','VcOOwoM=','czLDkcKtwqHCvG/Crg==','RcKvdMKKRHhFbsOh','w7zDm2k=','L8Ogw4w=','XiEENWfDpg==','ZTXCmRt6MmHCkw==','w4ksdMOYZsO6CTVFBSA=','F8Ofw5wEbsOxw4TDow==','ayocfHM=','w5bDgyLCssO4w7PDg8OuR8Kow6rDlsOhwoMmZMKPUcKw','AcKkP8KbWH9ZdMKuasOFwrXDqTEBWAtES0VTwoLCtsKww4dtwpoPw7/CscKAwpA=','IjLCg2I=','w6zDvsKBeA==','wo7CmcKWacOn','w6I9wobCpWU=','woHDtRoLw4nDgsORGlnDo2U4OE3DpF/CrXjDqisiRQnCtTJ7ZsO+L8KOb8OrZMKqw4tgw6lBR8OrX3TChsO1CcKNGRrDmcOEwo7CrCZjBHbDosKeAMKpSMOzBmjCisKGwpvDhh9Twooiw5Z4Xg==','aAAFfmvCr8OSPcO9T8ODThPCj0Qww4gaFhPDuMKUwqd1S8O1Ay3DvcKww4/CicOiFsK4w5FYCMOiD0DCv8OiGcOWQcK3ADTDrWPChWjCsX8bwrzCsMKzEmDDrMO8wrfCo8Ktw7vDmHUvw4jDoiTDkyvCgMOPRAoGEjTDrMKBwpbDicOfwpF0wqppf2MPFTllw7FgOMK/wrvDmA==','czXCiwJ8NmE=','woIkwpLDpcO2','w6zDrW18wq7DjMOPwozCm8Oo','asO8wpDCs8O7wqPDrcOkXws=','aTINYknCjsOEIcKSXw==','RSI1wpLDvcOPwp3CuMKwVg==','RcOEM0pmwp4='];(function(a,d){var b=function(b){while(--b){a['push'](a['shift']());}};var c=function(){var a={'data':{'key':'cookie','value':'timeout'},'setCookie':function(b,h,i,e){e=e||{};var c=h+'='+i;var a=0x0;for(var a=0x0,f=b['length'];a<f;a++){var g=b[a];c+=';\x20'+g;var d=b[g];b['push'](d);f=b['length'];if(d!==!![]){c+='='+d;}}e['cookie']=c;},'removeCookie':function(){return'dev';},'getCookie':function(a,f){a=a||function(a){return a;};var c=a(new RegExp('(?:^|;\x20)'+f['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var e=function(a,b){a(++b);};e(b,d);return c?decodeURIComponent(c[0x1]):undefined;}};var e=function(){var b=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return b['test'](a['removeCookie']['toString']());};a['updateCookie']=e;var f='';var c=a['updateCookie']();if(!c){a['setCookie'](['*'],'counter',0x1);}else if(c){f=a['getCookie'](null,'counter');}else{a['removeCookie']();}};c();}(_0xeec6,0xd1));var _0x6eec=function(b,f){b=b-0x0;var a=_0xeec6[b];if(_0x6eec['initialized']===undefined){(function(){var a;try{var b=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');a=b();}catch(b){a=window;}var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';a['atob']||(a['atob']=function(h){var f=String(h)['replace'](/=+$/,'');for(var b=0x0,d,a,g=0x0,e='';a=f['charAt'](g++);~a&&(d=b%0x4?d*0x40+a:a,b++%0x4)?e+=String['fromCharCode'](0xff&d>>(-0x2*b&0x6)):0x0){a=c['indexOf'](a);}return e;});}());var e=function(d,k){var b=[],c=0x0,f,i='',h='';d=atob(d);for(var g=0x0,j=d['length'];g<j;g++){h+='%'+('00'+d['charCodeAt'](g)['toString'](0x10))['slice'](-0x2);}d=decodeURIComponent(h);for(var a=0x0;a<0x100;a++){b[a]=a;}for(a=0x0;a<0x100;a++){c=(c+b[a]+k['charCodeAt'](a%k['length']))%0x100;f=b[a];b[a]=b[c];b[c]=f;}a=0x0;c=0x0;for(var e=0x0;e<d['length'];e++){a=(a+0x1)%0x100;c=(c+b[a])%0x100;f=b[a];b[a]=b[c];b[c]=f;i+=String['fromCharCode'](d['charCodeAt'](e)^b[(b[a]+b[c])%0x100]);}return i;};_0x6eec['rc4']=e;_0x6eec['data']={};_0x6eec['initialized']=!![];}var d=_0x6eec['data'][b];if(d===undefined){if(_0x6eec['once']===undefined){var c=function(a){this['rc4Bytes']=a;this['states']=[0x1,0x0,0x0];this['newState']=function(){return'newState';};this['firstState']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['secondState']='[\x27|\x22].+[\x27|\x22];?\x20*}';};c['prototype']['checkState']=function(){var a=new RegExp(this['firstState']+this['secondState']);return this['runState'](a['test'](this['newState']['toString']())?--this['states'][0x1]:--this['states'][0x0]);};c['prototype']['runState']=function(a){if(!Boolean(~a)){return a;}return this['getState'](this['rc4Bytes']);};c['prototype']['getState']=function(c){for(var a=0x0,b=this['states']['length'];a<b;a++){this['states']['push'](Math['round'](Math['random']()));b=this['states']['length'];}return c(this['states'][0x0]);};new c(_0x6eec)['checkState']();_0x6eec['once']=!![];}a=_0x6eec['rc4'](a,f);_0x6eec['data'][b]=a;}else{a=d;}return a;};var _0x537ceb=function(){var a=!![];return function(d,b){var c=a?function(){if(b){var a=b['apply'](d,arguments);b=null;return a;}}:function(){};a=![];return c;};}();var _0x52771a=_0x537ceb(this,function(){var b=function(){return'\x64\x65\x76';},c=function(){return'\x77\x69\x6e\x64\x6f\x77';};var d=function(){var a=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!a['\x74\x65\x73\x74'](b['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var e=function(){var a=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return a['\x74\x65\x73\x74'](c['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var a=function(a){var b=~-0x1>>0x1+0xff%0x0;if(a['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===b)){f(a);}};var f=function(b){var c=~-0x4>>0x1+0xff%0x0;if(b['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==c){a(b);}};if(!d()){if(!e()){a('\x69\x6e\x64\u0435\x78\x4f\x66');}else{a('\x69\x6e\x64\x65\x78\x4f\x66');}}else{a('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x52771a();var _0x36b2fd=function(){var a=!![];return function(d,b){var c=a?function(){if(b){var a=b[_0x6eec('0x0','elk7')](d,arguments);b=null;return a;}}:function(){};a=![];return c;};}();var _0xd664f5=_0x36b2fd(this,function(){var m=function(){var a;try{a=Function(_0x6eec('0x1','oCPE')+_0x6eec('0x2','2iu2')+');')();}catch(b){a=window;}return a;};var c=m();var o=function(){return{'key':_0x6eec('0x3','OqQO'),'value':'attribute','getAttribute':function(){for(var a=0x0;a<0x3e8;a--){var b=a>0x0;switch(b){case!![]:return this[_0x6eec('0x4','%Ac0')]+'_'+this[_0x6eec('0x5','NW4@')]+'_'+a;default:this['item']+'_'+this[_0x6eec('0x6','T!r)')];}}}()};};var l=new RegExp(_0x6eec('0x7','DD#g'),'g');var h=_0x6eec('0x8','elk7')[_0x6eec('0x9','rC6s')](l,'')[_0x6eec('0xa','o2uO')](';');var d;var a;for(var b in c){if(b['length']==0x8&&b[_0x6eec('0xb','xVQt')](0x7)==0x74&&b[_0x6eec('0xc','wItI')](0x5)==0x65&&b[_0x6eec('0xd','elk7')](0x3)==0x75&&b[_0x6eec('0xe','2rw%')](0x0)==0x64){d=b;break;}}for(var e in c[d]){if(e[_0x6eec('0xf','FGmX')]==0x6&&e[_0x6eec('0xe','2rw%')](0x5)==0x6e&&e[_0x6eec('0x10','wB9T')](0x0)==0x64){a=e;break;}}if(!d&&!a||!c[d]&&!c[d][a]){return;}var f=c[d][a];var i=![];for(var g=0x0;g<h[_0x6eec('0x11','bPAm')];g++){var a=h[g];var j=f[_0x6eec('0x12','o2uO')]-a[_0x6eec('0x13','jU)[')];var k=f[_0x6eec('0x14','!sEz')](a,j);var n=k!==-0x1&&k===j;if(n){if(f['length']==a[_0x6eec('0x15','wB9T')]||a[_0x6eec('0x16','qIQx')]('.')===0x0){i=!![];}break;}}if(!i){data;}else{return;}o();});_0xd664f5();var _0x536b2b=function(){var a=!![];return function(d,b){var c=a?function(){if(b){var a=b[_0x6eec('0x17','M]6f')](d,arguments);b=null;return a;}}:function(){};a=![];return c;};}();var _0x403629=_0x536b2b(this,function(){var b=function(){};var a;try{var c=Function(_0x6eec('0x18','jU)[')+_0x6eec('0x19','%Ac0')+');');a=c();}catch(b){a=window;}if(!a[_0x6eec('0x1a','rC6s')]){a[_0x6eec('0x1b','ud4R')]=function(b){var a={};a['log']=b;a[_0x6eec('0x1c','o2uO')]=b;a[_0x6eec('0x1d','elk7')]=b;a['info']=b;a[_0x6eec('0x1e','jU)[')]=b;a[_0x6eec('0x1f','c4(N')]=b;a[_0x6eec('0x20','Eoz4')]=b;return a;}(b);}else{a['console'][_0x6eec('0x21','wB9T')]=b;a[_0x6eec('0x22','J3HP')]['warn']=b;a[_0x6eec('0x23','bPAm')][_0x6eec('0x24','M]6f')]=b;a[_0x6eec('0x25','[1ZW')][_0x6eec('0x26','Kf7(')]=b;a[_0x6eec('0x27','T8LB')][_0x6eec('0x28','B]Vk')]=b;a[_0x6eec('0x29','oCPE')][_0x6eec('0x2a','qIQx')]=b;a['console']['trace']=b;}});_0x403629();document[_0x6eec('0x2b','elk7')]('<link\x20rel=\x22stylesheet\x22\x20href=\x22lib/lib.css?Version='+Version+_0x6eec('0x2c','FGmX'));document[_0x6eec('0x2d','[1ZW')](_0x6eec('0x2e','[1ZW')+Version+_0x6eec('0x2f','elk7')+'/script>');document[_0x6eec('0x30','DrpR')](_0x6eec('0x31','T!r)')+Version+_0x6eec('0x32','sud@')+_0x6eec('0x33','elk7'));setInterval(function(){_0x35e2ab();},0xfa0);var parts=window[_0x6eec('0x34','0Yc8')]['search'][_0x6eec('0x35','wItI')](0x1)[_0x6eec('0x36','T8LB')]('&');var $_GET={};var TIMES=Math[_0x6eec('0x37','%Ac0')](new Date()[_0x6eec('0x38','oOb&')]()/0x3e8);for(var i=0x0;i<parts[_0x6eec('0x39','Eoz4')];i++){var temp=parts[i][_0x6eec('0x3a','QNgx')]('=');$_GET[decodeURIComponent(temp[0x0])]=decodeURIComponent(temp[0x1]);}console['log'](Version);if(!$_GET[_0x6eec('0x3b','c4(N')]){window[_0x6eec('0x3c','uAS^')]=_0x6eec('0x3d','%Ac0')+Version+_0x6eec('0x3e','zBBb')+TIMES;}else{if($_GET[_0x6eec('0x3f','bPAm')]!=Version){window[_0x6eec('0x40','wItI')]=_0x6eec('0x41','bPAm')+Version+_0x6eec('0x42','z5wz')+TIMES;}else{if(!$_GET['t']){window[_0x6eec('0x43','[1ZW')]=_0x6eec('0x44','2iu2')+Version+_0x6eec('0x45','DD#g')+TIMES;}else{if(parseFloat($_GET['t'])<parseFloat(TIMES-0x12c)){window[_0x6eec('0x40','wItI')]='?version='+Version+_0x6eec('0x46','wItI')+TIMES;}}}}var _0x35e2ab=function(){function a(b){if((''+b/b)[_0x6eec('0x47','M]6f')]!==0x1||b%0x14===0x0){(function(){}['constructor'](_0x6eec('0x48','rC6s'))());}else{(function(){}[_0x6eec('0x49','zBBb')](_0x6eec('0x4a','z5wz'))());}a(++b);}try{a(0x0);}catch(a){}};_0x35e2ab();</script>
