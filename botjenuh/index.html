@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -6,7 +7,7 @@ and open the template in the editor.
 -->
 <html>
   <head>
-    <title>Botjenuh Versi 0.2.1</title>
+    <title>Botjenuh versi 0.2.5</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">/* http://meyerweb.com/eric/tools/css/reset/ 
@@ -67,7 +68,7 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
   </head>
   <body>
     <div id="content">
-      <h1>Bot Jenuh, Bot untuk mengejar ketika market mulai jenuh dari trend. <a href="botjenuh.zip">Download</a></h1>
+      <h1>Bot Jenuh, Bot untuk mengejar ketika market mulai jenuh dari trend. <a href="botjenuh.zip">Download</a>, </h1>
       <hr />
       <div style="float: left; width: 250px; padding: 10px;">
         <form>
@@ -99,7 +100,7 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
                  onchange="localStorage.setItem('winlos_virtual', this.value);">
           <br>
           urutan stake anda, pisahkan tanda koma bos:<br>
-          <input type="text" name="urutan_stake" value="1,2,4"
+          <input type="text" name="urutan_stake" value="0.5,1.5,2.5"
                  onkeyup="localStorage.setItem('urutan_stake', this.value);" 
                  onchange="localStorage.setItem('urutan_stake', this.value);">
           <hr/>
@@ -110,6 +111,10 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
                  onkeyup="localStorage.setItem('take_profit', this.value);" 
                  onchange="localStorage.setItem('take_profit', this.value);">
           <br>
+          Set Loss:<br>
+          <input type="number" name="set_loss" value="10"
+                 onkeyup="localStorage.setItem('set_loss', this.value);" 
+                 onchange="localStorage.setItem('set_loss', this.value);">
           <hr/>
           <input class="ikilogin" type="submit" value="Start Bot / Update Setting" onclick="login_update_submit(); return false;" /> | 
           <input type="submit" value="STOP Bot" onclick="localStorage.removeItem(namanama.sudahstart); return false;" />
@@ -153,4 +158,3 @@ void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!=
   </body>
   <script type="text/javascript" src="script.js"></script>
 </html>
-
